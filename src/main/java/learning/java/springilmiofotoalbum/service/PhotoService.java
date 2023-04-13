@@ -1,5 +1,6 @@
 package learning.java.springilmiofotoalbum.service;
 
+import learning.java.springilmiofotoalbum.exceptions.PhotoNotFoundException;
 import learning.java.springilmiofotoalbum.models.Photo;
 import learning.java.springilmiofotoalbum.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
