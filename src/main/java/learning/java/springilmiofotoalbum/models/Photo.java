@@ -21,13 +21,13 @@ public class Photo {
     private String title;
 
     @NotEmpty
-    @Size(min = 5, max = 10000, message = "Description has not to be greater than 20000 chars")
+    @Size(min = 5, max = 10000, message = "Description can not to be greater than 10000 chars")
     @Column(nullable = false)
     private String description;
 
 
     @NotEmpty
-    @Size(min = 5, max = 10000, message = "Photo Url has not to be greater than 20000 chars ")
+    @Size(min = 5, max = 10000, message = "Photo Url can not to be greater than 10000 chars ")
     private String url;
 
 
