@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/photos")
+@RequestMapping("/templates/photos")
 public class PhotoController {
     @Autowired
     private PhotoService photoService;
@@ -42,7 +42,7 @@ public class PhotoController {
             model.addAttribute("keyword", keyword.get());
         }
 
-        model.addAttribute("photos", photos);
+        model.addAttribute("templates/photos", photos);
         return "/photo/index";
     }
 

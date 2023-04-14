@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/templates/categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -29,7 +29,7 @@ public class CategoryController {
         model.addAttribute("list", categoryService.getAll());
         model.addAttribute("bho", photoService.getAllPhotos() );
         model.addAttribute("categoryObj", new Category());
-        return "/categories/index";
+        return "/templates/categories/index";
 
     }
 
@@ -38,7 +38,7 @@ public class CategoryController {
 
         if (bindingResult.hasErrors()){
             model.addAttribute("list", categoryService.getAll());
-            return "/categories/index";
+            return "/templates/categories/index";
         }
 
         categoryService.create(category);
@@ -51,7 +51,7 @@ public class CategoryController {
             Category category = categoryService.getById(id);
             model.addAttribute("category", category );
 
-            return "/categories/edit";
+            return "/templates/categories/edit";
         } catch (CategoryNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category id: " + id + " not found");
         }
