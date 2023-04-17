@@ -11,18 +11,20 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
+
     @Bean
-    UserDetailsService userDetailsService(){
+    UserDetailsService userDetailsService() {
         return new DatabaseUserDetailsService();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean
-    DaoAuthenticationProvider authenticationProvider(){
+    DaoAuthenticationProvider authenticationProvider() {
+
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
         provider.setUserDetailsService(userDetailsService());
@@ -37,18 +39,12 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests()
-                .requestMatchers("/templates/categories", "/templates/categories/**").hasAuthority("ADMIN")
-                .requestMatchers("/templates/photos/create", "/templates/photos/edit/**", "/templates/photos/delete/**")
-                .hasAuthority("ADMIN")
-                .requestMatchers("/", "/templates/photos", "/templates/photos/**").hasAnyAuthority("USER", "ADMIN")
-                /*    .requestMatchers("/", "/photos", "/photos/**").hasAnyAuthority( "ADMIN")*/
+                //.requestMatchers("/api/**").permitAll()
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .and().logout()
                 .and().exceptionHandling();
         http.csrf().disable();
-
         return http.build();
-
     }
 }
