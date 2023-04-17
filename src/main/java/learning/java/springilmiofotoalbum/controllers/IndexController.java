@@ -1,4 +1,4 @@
-package learning.java.springilmiofotoalbum.controller;
+package learning.java.springilmiofotoalbum.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

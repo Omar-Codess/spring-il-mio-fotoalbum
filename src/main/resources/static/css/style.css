@@ -1,5 +1,17 @@
 body {
 
-background-color: yellow;
+background-color: lightblue;
+
+}
+
+table img {
+
+height: 100px;
+
+}
+
+dd img {
+
+width: 100%;
 
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Photos</title>
+  <link th:replace="~{/fragments/head :: head}">
+</head>
+<body>
+<nav th:replace="~{/fragments/navbar :: navbar}"></nav>
+
+<div class="container">
+
+  <dl th:object="${photo}">
+    <dt>Title</dt>
+    <dd th:text="*{title}"></dd>
+    <dt>Image</dt>
+    <dd><img th:src="*{url}" th:alt="*{title}"></dd>
+    <dt>Description</dt>
+    <dd th:text="*{description}"></dd>
+    <dt>Categories</dt>
+    <dd>
+      <span th:each="category : *{categories}" th:text="${category.name} ">, </span>
+    </dd>
+
+  </dl>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Photos</title>
+  <link th:replace="~{/fragments/head :: head}">
+</head>
+<body>
+<nav th:replace="~{/fragments/navbar :: navbar}"></nav>
+<div class="container">
+
+  <div class="row row-cols-2">
+    <div class="col">
+      <table class="table table-dark">
+        <thead>
+        <tr>
+
+          <th scope="col">Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${list}" th:object="${category}">
+          <td th:text="*{name}"></td>
+          <td><a th:href="@{|/categories/delete/*{id}|}" class="btn btn-danger"><i class="fa-solid fa-x"></i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <th:block th:if="${message}">
+        <div th:replace="~{/fragments/messages :: alert(${message.type}, ${message.text})}"></div>
+      </th:block>
+      <form method="POST" th:object="${newCategory}" th:action="@{/categories/create}">
+        <div class="mb-3">
+          <label for="name" class="form-label">New Category</label>
+          <input type="text" class="form-control" id="name" th:field="*{name}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

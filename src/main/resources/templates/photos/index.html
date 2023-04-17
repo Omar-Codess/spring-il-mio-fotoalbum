@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Photos</title>
+  <link th:replace="~{/fragments/head :: head}">
+</head>
+<body>
+<nav th:replace="~{/fragments/navbar :: navbar}"></nav>
+<div class="container">
+  <th:block th:if="${message}">
+    <div th:replace="~{/fragments/messages :: alert(${message.type}, ${message.text})}"></div>
+  </th:block>
+  <table class="table table-dark">
+    <thead>
+    <tr>
+
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Title</th>
+      <th scope="col">Visible</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="photo : ${list}" th:object="${photo}">
+
+
+      <td><img th:src="*{url}" th:alt="*{title}"></td>
+      <td th:text="*{title}"></td>
+      <td th:text="*{visible}"></td>
+
+      <td>
+        <a class="btn btn-primary" th:href="@{|/*{id}|}"><i class="fa-solid fa-eye"></i></a>
+        <a class="btn btn-warning" th:href="@{|/edit/*{id}|}"><i class="fa-solid fa-pen"></i></a>
+        <a class="btn btn-danger" th:href="@{|/delete/*{id}|}"><i class="fa-solid fa-x"></i></a>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

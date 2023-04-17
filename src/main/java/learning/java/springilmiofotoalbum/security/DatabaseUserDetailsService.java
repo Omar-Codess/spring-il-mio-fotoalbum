@@ -1,7 +1,7 @@
 package learning.java.springilmiofotoalbum.security;
 
 import learning.java.springilmiofotoalbum.models.User;
-import learning.java.springilmiofotoalbum.repository.UserRepository;
+import learning.java.springilmiofotoalbum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,57 +1,43 @@
 package learning.java.springilmiofotoalbum.models;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "templates/photos")
+@Table(name = "photos")
 public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
-    @Size(min = 5, max = 255, message = "Name can not be greater than 5 or lesser than 255 chars")
-    @Column(nullable = false)
-    private String title;
+    @NotBlank
+    String title;
+    @NotBlank
+    String description;
+    Boolean visible;
 
-    @NotEmpty
-    @Size(min = 5, max = 10000, message = "Description can not to be greater than 10000 chars")
-    @Column(nullable = false)
-    private String description;
+    @Lob
+    @Column(length = 16777215)
+    @Nullable
+    private byte[] image;
 
-
-    @NotEmpty
-    @Size(min = 5, max = 10000, message = "Photo Url can not to be greater than 10000 chars ")
-    private String url;
-
-
-    @NotNull
-    @Column(nullable = false)
-    private Boolean visible;
+    @NotBlank
+    String url;
 
     @ManyToMany
-    @JoinTable(name = "photo_category",
-               joinColumns = @JoinColumn(name = "photo_id"),
-               inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
-
-    public Photo() {
-        super();
-    }
-
-    public Photo(Integer id, String title, String description, String url, Boolean visible) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.url = url;
-        this.visible = visible;
-    }
+    @JoinTable(
+            name = "photo_category",
+            joinColumns = @JoinColumn(name = "photo_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Integer getId() {
         return id;
@@ -77,14 +63,6 @@ public class Photo {
         this.description = description;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public Boolean getVisible() {
         return visible;
     }
@@ -93,11 +71,27 @@ public class Photo {
         this.visible = visible;
     }
 
-    public void setCategories(List<Category> categories){
-        this.categories = categories;
+    public byte[] getImage() {
+        return image;
     }
 
-    public List<Category> getCategories(){
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Set<Category> getCategories() {
         return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

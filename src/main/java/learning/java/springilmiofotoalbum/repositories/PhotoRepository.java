@@ -1,4 +1,4 @@
-package learning.java.springilmiofotoalbum.repository;
+package learning.java.springilmiofotoalbum.repositories;
 
 import learning.java.springilmiofotoalbum.models.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
